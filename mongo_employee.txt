@@ -1,0 +1,29 @@
+1)Adding data
+db.employee.insertOne{"e_name":"Anna","e_address":"xyz","e_email":"anna@gmail.com","e_mobile":9943681298,"e_dob":ISODate("10-03-1999"),"e_gender":"Female","e_dept":"MCA","e_city":"Hubli"},{"e_name":"Shirley","e_address":"jndf","e_email":"shirley@yahoo.com","e_mobile":9923451298,"e_dob":ISODate("19-05-1979"),"e_gender":"Female","e_dept":"CSE","e_city":"Siddapur"},{"e_name":"Kobe","e_address":"djfkg","e_email":"kobe@yahoo.com","e_mobile":8105451298,"e_dob":ISODate("19-12-1988"),"e_gender":"Male","e_dept":"EEE","e_city":"Banglore"},{"e_name":"Kodi","e_address":"knsdk","e_email":"kodi@.com","e_mobile":9923434218,"e_dob":ISODate("22-02-2002"),"e_gender":"Male","e_dept":"ECE","e_city":"Manglore"},{"e_name":"Ashley","e_address":"kndf","e_email":"ashley@gmail.com","e_mobile":6923761290,"e_dob":ISODate("12-05-1993"),"e_gender":"Female","e_dept":"EEE","e_city":"Mysore"},{"e_name":"Mary","e_address":"kns","e_email":"mary@yahoo.com","e_mobile":9923857443,"e_dob":ISODate("17-01-2005"),"e_gender":"Female","e_dept":"MCA","e_city":"Dharwad"},{"e_name":"Joseph","e_address":"mndz","e_email":"joseph@gmail.com","e_mobile":9387462749,"e_dob":ISODate("07-04-1989"),"e_gender":"Male","e_dept":"CSE","e_city":"Hospet"},{"e_name":"Michael","e_address":"kndf","e_email":"michael@gmail.com","e_mobile":8734927438,"e_dob":ISODate("07-07-1996") ,"e_gender":"Male","e_dept":"CSE","e_city":"Kalburgi"},{"e_name":"Shiva","e_address":"kdnw","e_email":"shiva@yahoo.com","e_mobile":9743891058,"e_dob":ISODate("13-02-2000"),"e_gender":"Male","e_dept":"MCA","e_city":"Haveri"},{"e_name":"Andrew","e_address":"vcxma","e_email":"andrew@gmail.com","e_mobile":888543298,"e_dob":ISODate("05-10-1998"),"e_gender":"Male","e_dept":"EEE","e_city":"Sirsi"},{"e_name":"Maria","e_address":"lsmfdz","_email":"maria@yahoo.com","e_mobile":6678045378,"e_dob":ISODate("21-08-2002"),"e_gender":"Female","e_dept":"ECE","e_city":"Hubli"}
+db.employee.insertMany([{"e_name":"Anna","e_address":"xyz","e_email":"anna@gmail.com","e_mobile":9943681298,"e_dob":ISODate("1999-03-10"),"e_gender":"Female","e_dept":"MCA","e_city":"Hubli"},{"e_name":"Shirley","e_address":"jndf","e_email":"shirley@yahoo.com","e_mobile":9923451298,"e_dob":ISODate("1979-05-19"),"e_gender":"Female","e_dept":"CSE","e_city":"Siddapur"},{"e_name":"Kobe","e_address":"djfkg","e_email":"kobe@yahoo.com","e_mobile":8105451298,"e_dob":ISODate("1988-12-17"),"e_gender":"Male","e_dept":"EEE","e_city":"Banglore"},{"e_name":"Kodi","e_address":"knsdk","e_email":"kodi@.com","e_mobile":9923434218,"e_dob":ISODate("2002-02-22"),"e_gender":"Male","e_dept":"ECE","e_city":"Manglore"},{"e_name":"Ashley","e_address":"kndf","e_email":"ashley@gmail.com","e_mobile":6923761290,"e_dob":ISODate("1993-05-12"),"e_gender":"Female","e_dept":"EEE","e_city":"Mysore"},{"e_name":"Mary","e_address":"kns","e_email":"mary@yahoo.com","e_mobile":9923857443,"e_dob":ISODate("2005-01-16"),"e_gender":"Female","e_dept":"MCA","e_city":"Dharwad"},{"e_name":"Joseph","e_address":"mndz","e_email":"joseph@gmail.com","e_mobile":9387462749,"e_dob":ISODate("1989-04-07"),"e_gender":"Male","e_dept":"CSE","e_city":"Hospet"},{"e_name":"Michael","e_address":"kndf","e_email":"michael@gmail.com","e_mobile":8734927438,"e_dob":ISODate("1996-07-07") ,"e_gender":"Male","e_dept":"CSE","e_city":"Kalburgi"},{"e_name":"Shiva","e_address":"kdnw","e_email":"shiva@yahoo.com","e_mobile":9743891058,"e_dob":ISODate("2000-02-13"),"e_gender":"Male","e_dept":"MCA","e_city":"Haveri"},{"e_name":"Andrew","e_address":"vcxma","e_email":"andrew@gmail.com","e_mobile":888543298,"e_dob":ISODate("1998-10-05"),"e_gender":"Male","e_dept":"EEE","e_city":"Sirsi"},{"e_name":"Maria","e_address":"lsmfdz","_email":"maria@yahoo.com","e_mobile":6678045378,"e_dob":ISODate("2002-08-21"),"e_gender":"Female","e_dept":"ECE","e_city":"Hubli"}])
+
+2)Find employee name starts with 'a'
+db.employee.find({"e_name":{$regex:/^a/i}})   //i - ignore case
+db.employee.find({"e_name":{$regex:"^A"}})
+
+3)Find command
+db.employee.find({"e_dept":"MCA"})
+
+db.employee.find({"e_gender":"Female"})
+
+db.employee.find({"e_email":{$regex:/yahoo.com$/}})
+db.employee.find({"e_email":{$regex:"@yahoo.com"}})
+db.employee.find({"e_email": /.*@yahoo.com.*/})//no output
+
+
+ 4)Update
+ 
+ update <tb1> set <col>=<value>
+ db.employee.update({}, {})
+
+ db.employee.updateOne({"e_name":"Anna"}, {$set:{"e_mobile": 9845801171}})
+ 
+5) Delete
+ 
+ db.employee.deleteMany({"e_name":"Anna"})
+ 

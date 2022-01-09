@@ -1,0 +1,14 @@
+1)C: CREATE
+db.Books.insertMany([{"book_title":"MEAN Web Development","author":"A.Q.Habiv","publication":"Packt","yo_pub":2014,"edition":5,"ISBN_no":"m1234","book_type":"textbook"},{"book_title":"FullStack Development","author":"Colin J","publication":"Sitepoint","yo_pub":2013,"edition":5,"ISBN_no":"f1234","book_type":"reference"},{"book_title":"Pattern Recognition","author":"Christopher B","publication":"Springer","yo_pub":2018,"edition":3,"ISBN_no":"p456","book_type":"textbook"}])
+db.Books.insertMany([{"book_title":"Handson MachineLearning","author":"Christopher B","publication":"O'Reilly","yo_pub":2016,"edition":3,"ISBN_no":"m789","book_type":"reference"},{"book_title":"Core Java","author":"Gray Cornell","publication":"Tata McGraw Hill","yo_pub":2007,"edition":2,"ISBN_no":"c456","book_type":"textbook"},{"book_title":"Head First Java","author":"Bert Bates","publication":"O'Reilly","yo_pub":2007,"edition":2,"ISBN_no":"j1235","book_type":"reference"}])
+db.Books.insertMany([{"book_title":"BigData Analytics","author":"Seema Acharya","publication":"Wiley","yo_pub":2015,"edition":1,"ISBN_no":"b2345","book_type":"textbook"},{"book_title":"Data Mining Concepts","author":"Jiawei Han","publication":"Elsevier","yo_pub":2008,"edition":2,"ISBN_no":"d6789","book_type":"reference"},{"book_title":"Data Structures","author":"Gilberg","publication":"Thomson","yo_pub":2005,"edition":3,"ISBN_no":"ds890","book_type":"textbook"}])
+
+2)R:READ
+db.Books.find({"book_title":{$regex: /java/i}})
+
+db.Books.find({$and:[{"book_title":{$regex: "java/i"}},{"yo_pub":{$gt:2015}}]})
+
+db.Books.aggregate([{"$group":{"_id":"$author","count":{"$sum":1}}},{"$match":{count:{"$gt":1}}}])
+
+
+db.Books.find({$and:[{"edition":{$gte:3}},{"edition":{$lte:4}}]})
